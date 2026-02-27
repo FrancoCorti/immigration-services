@@ -28,6 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.classList.remove('active');
     });
 
+    // Flip Card Touch Support for Mobile
+    const flipCards = document.querySelectorAll('.flip-card');
+    flipCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            // Prevent closing when clicking the button
+            if (e.target.closest('.btn-card')) {
+                return;
+            }
+            card.classList.toggle('active');
+        });
+    });
+    
+    // Close flip cards when clicking outside on mobile
+    document.addEventListener('click', (e) => {
+        flipCards.forEach(card => {
+            if (!card.contains(e.target)) {
+                card.classList.remove('active');
+            }
+        });
+    });
+
     const revealElements = document.querySelectorAll('.scroll-reveal');
     const observerOptions = { threshold: 0.15 };
 
