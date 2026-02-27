@@ -4,6 +4,30 @@
 
 document.addEventListener('DOMContentLoaded', () => {
    
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+    
+    // Close menu when a link is clicked
+    const navItems = navLinks.querySelectorAll('a');
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+    
+    // Close menu when scrolling
+    window.addEventListener('scroll', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+    });
+
     const revealElements = document.querySelectorAll('.scroll-reveal');
     const observerOptions = { threshold: 0.15 };
 

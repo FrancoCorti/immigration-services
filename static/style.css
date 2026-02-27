@@ -193,13 +193,79 @@ h2 { font-size: 2.5rem; text-align: center; color: var(--color-indigo); }
 footer { background-color: var(--color-indigo); color: var(--color-white); text-align: center; padding: 20px 0; }
 
 /* =========================================
+   HAMBURGER MENU
+   ========================================= */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-white);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* =========================================
    MEDIA QUERIES
    ========================================= */
 @media (max-width: 768px) {
-    .navbar { flex-direction: column; padding: 15px 20px; }
+    .navbar { padding: 15px 20px; }
     .navbar.scrolled { padding: 10px 20px; }
-    .logo-img { height: 60px; }
-    .nav-links { margin-top: 15px; gap: 20px; flex-wrap: wrap; justify-content: center; }
+    .logo-img { height: 55px; }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 75px;
+        left: -100%;
+        flex-direction: column;
+        background-color: rgba(10, 14, 28, 0.98);
+        width: 100%;
+        text-align: center;
+        transition: left 0.3s ease;
+        padding: 20px 0;
+        gap: 0;
+        backdrop-filter: blur(10px);
+    }
+    
+    .nav-links.active {
+        left: 0;
+    }
+    
+    .nav-links li {
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-links a:not(.nav-btn) {
+        font-size: 1rem;
+    }
+    
+    .nav-btn {
+        margin: 15px 0;
+        display: inline-block;
+    }
+    
     .hero-content h1 { font-size: 2.2rem; }
     .about-text-grid { grid-template-columns: 1fr; gap: 25px; }
     .stat-item { min-width: 40%; }
